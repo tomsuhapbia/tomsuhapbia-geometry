@@ -1,10 +1,10 @@
 # tomsuhapbia's Geometry
 
-A complete, responsive monochrome mathematics journal. Includes six full Markdown articles, KaTeX mathematics, highlighted JavaScript examples, client-side topic filtering and search, saved light/dark preference, and four original three-page PDF notes with preview, zoom, fullscreen, and downloads.
+Blog một trang, giao diện đen trắng, tag theo từng bài, tìm kiếm, giao diện sáng/tối và trình đọc PDF. Không có dữ liệu mẫu. Bài đầu tiên sử dụng nguyên bản PDF Feuerbach–Euler do tác giả cung cấp; logo và favicon được chuyển từ hinh305.pdf.
 
-## Run locally
+## Chạy tại máy
 
-Use Node.js 22 or newer.
+Dùng Node.js 22 trở lên:
 
 ```sh
 npm ci
@@ -12,44 +12,41 @@ npm run build
 npm run dev
 ```
 
-Open the address printed by the server (normally http://127.0.0.1:4173). Set `PORT` to select another port. Stop the server with Ctrl+C.
+Mở địa chỉ do server in ra, mặc định http://127.0.0.1:4173. Có thể đặt biến `PORT` để dùng cổng khác.
 
-## Deploy
+## Thêm bài viết và tag
 
-The complete website is the **dist/** directory. It contains the authored site, articles, actual PDFs, local fonts, and local browser libraries. No backend, database, API key, or external CDN is required. Serve it over HTTP(S); browser modules cannot run by double-clicking index.html.
+1. Thêm nội dung Markdown vào `dist/posts/` nếu muốn hiển thị nội dung trên trang.
+2. Nếu bài có PDF, thêm tài liệu vào `dist/pdf/`.
+3. Thêm một đối tượng vào mảng `posts` trong `dist/content.js` gồm `id`, `title`, `author`, `date` theo dạng YYYY-MM-DD và `tags` (mảng chuỗi).
+4. `description` là mô tả ngắn; `body` là đường dẫn Markdown; `pdf` là đường dẫn tài liệu. Với PDF, điền `pages`, `bytes` thực tế và `language`.
 
-- **Netlify:** import this repository. The included netlify.toml sets the build command and publish directory. Alternatively, upload the built dist directory.
-- **Vercel:** import this repository. The included vercel.json configures the static output.
-- **Cloudflare Pages:** build command `npm run build`, output directory `dist`.
-- **GitHub Pages or any static host:** publish the contents of dist. Relative asset paths support hosting in a subdirectory.
+Tag được tạo tự động từ các bài, không cần khai báo danh mục riêng. Bấm tag trên bài để lọc; bấm **All posts** để xem tất cả. Link có tham số `?tag=...` hoặc `?q=...` giữ lại bộ lọc khi tải lại. Tiêu đề bài có liên kết cố định dạng `#post-id`.
 
-Routes use URL fragments (`#/topics`, `#/archive`, `#/article/the-euler-line`). They work on static hosts without rewrite rules. Route titles and descriptions update in the browser; search-engine and social crawlers that do not execute JavaScript see the homepage metadata. Per-article server-rendered SEO can be added if needed.
+Markdown hỗ trợ công thức `$...$` và `$$...$$`, khối mã có tô cú pháp, và các khối HTML với class `theorem`, `proof`, `note`. Nội dung được lọc bằng DOMPurify trước khi hiển thị.
 
-## Edit the content
+Đây là blog tĩnh: thêm hoặc chỉnh bài trong các file rồi triển khai lại. Không có trang quản trị hoặc tài khoản đăng nhập.
 
-- **Articles:** edit dist/posts/*.md. Add corresponding metadata in dist/content.js. Dollar-delimited inline and display mathematics are supported. Callouts use `<div class="theorem">`, `<div class="proof">`, and `<div class="note">` with a `callout-title` span. Markdown is sanitized before display.
-- **PDFs:** replace or add files in dist/pdf, update the `pdfs` list in dist/content.js, and record real byte sizes and page counts in dist/pdf/manifest.json. Keep each id aligned with its PDF filename.
-- **Contact and About:** edit `aboutPage()` and `addContact()` in dist/app.js. The current public contacts are tomsuhapbia@gmail.com and the supplied Art of Problem Solving profile.
-- **Design:** dist/styles.css contains both theme palettes and responsive layouts; dist/diagrams.js contains mathematical SVG constructions.
-- **Navigation and interactions:** dist/app.js.
+## Tài liệu và logo gốc
 
-The opening articles and notes are introductory sample editorial content about classical results, written for this site. Review and replace them with your own work as the journal grows. No qualifications, awards, institutional affiliations, or personal history have been invented.
+- Bài duy nhất: `dist/pdf/feuerbach-euler-perpendicularity.pdf`, giữ nguyên nội dung file được cung cấp, 7 trang, 873738 byte. Ngày bài viết là 22/08/2026 theo tài liệu.
+- `dist/posts/feuerbach-euler-perpendicularity.md` là phần giới thiệu ngắn dựa trên đề bài. Toàn bộ chứng minh và hình nằm trong PDF gốc.
+- `dist/assets/hinh305.pdf` là nguồn logo. `logo.png` và `favicon.png` là bản render cho trình duyệt; CSS hiển thị đơn sắc phù hợp hai theme.
+- Email và AoPS nằm trong `dist/index.html`.
 
-## Rebuild the PDF notes
+## Triển khai
 
-The four finished PDFs are already included; Python is not needed to build or deploy the site. To regenerate the notes after editing the source:
+Toàn bộ website hoàn chỉnh nằm trong **dist/**, gồm các font và thư viện cục bộ. Không cần backend, API key hay CDN. Phải phục vụ qua HTTP(S), không mở index.html bằng file://.
 
-```sh
-python -m pip install reportlab pypdf
-python scripts/generate_pdfs.py
-```
+- **Netlify:** import repository; `netlify.toml` đã khai báo build và thư mục xuất bản. Hoặc tải trực tiếp thư mục dist đã build.
+- **Vercel:** import repository; dùng `vercel.json` kèm theo.
+- **Cloudflare Pages:** build `npm run build`, output `dist`.
+- **GitHub Pages / hosting tĩnh khác:** xuất bản nội dung dist. Đường dẫn tương đối hỗ trợ cả hosting dưới thư mục con.
 
-The generator creates three-page notes and updates the byte-size manifest. It embeds Times New Roman from Windows; on other platforms, set `GEOMETRY_FONT_DIR` to a directory containing `times.ttf`, `timesbd.ttf`, `timesi.ttf`, and `timesbi.ttf`. Render changed PDFs with Poppler and review their layout before publication.
+Chỉ có một trang blog. Tài liệu mở trong hộp đọc PDF ngay trên trang hoặc tải về. Không cần cấu hình rewrite cho các trang con.
 
-## Validation
+## Kiểm tra
 
-`npm run build` copies exact lockfile-pinned dependencies into dist/vendor and checks local assets, JavaScript syntax, article completeness, and PDF signatures. `npm run check` runs the checks without copying dependencies.
+`npm run build` chuẩn bị thư viện, font và giấy phép trong dist/vendor rồi kiểm tra JavaScript, công thức, tài liệu, số byte và đường dẫn. `npm run check` chạy lại phần kiểm tra. Không được để bài hoặc PDF không được tham chiếu trong các thư mục nội dung.
 
-All fonts, KaTeX, Marked, DOMPurify, Prism, and PDF.js are served locally. Theme preference is the only persistent browser data. Search and filtering run entirely in the browser. There are no analytics, cookies, contact-form submissions, or login requirements built into the site.
-
-Vendor dependencies keep their upstream licenses; see dist/vendor/THIRD_PARTY_NOTICES.txt and package-lock.json.
+Thư viện được khóa phiên bản bằng package-lock.json. Giấy phép nằm trong `dist/vendor/THIRD_PARTY_NOTICES.txt`. Tìm kiếm và tag chạy tại trình duyệt; localStorage chỉ lưu theme. Không có analytics hay biểu mẫu gửi dữ liệu.
