@@ -1,0 +1,22 @@
+{
+  "name": "tomsuhapbia-geometry",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A monochrome mathematics journal and PDF library.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "@fontsource/dm-serif-display": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "dompurify": "3.4.15",
+    "katex": "0.18.7",
+    "marked": "18.0.12",
+    "pdfjs-dist": "6.3.289",
+    "prismjs": "1.30.0"
+  }
+}

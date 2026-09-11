@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="A personal collection of geometry, mathematical proofs, and academic notes. Read an essay, explore a construction, or take a PDF with you.">
+  <meta property="og:title" content="tomsuhapbia’s Geometry — A mathematics journal">
+  <meta property="og:description" content="Geometry, proofs, and the pleasure of figuring things out.">
+  <meta property="og:type" content="website">
+  <title>tomsuhapbia’s Geometry — A mathematics journal</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23111'/%3E%3Cpath d='M20 7 34 31H6Z M20 7v24 M6 31l21-12 M34 31 13 19' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E">
+  <script src="./theme.js"></script>
+  <link rel="stylesheet" href="./vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./vendor/katex/katex.min.js"></script>
+  <script defer src="./vendor/katex/auto-render.min.js"></script>
+  <script defer src="./vendor/marked.js"></script>
+  <script defer src="./vendor/purify.min.js"></script>
+  <script defer src="./vendor/prism.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#/" aria-label="tomsuhapbia’s Geometry home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 37 34H3Z M20 4v30 M3 34l25.5-15 M37 34 11.5 19"/></svg><span>tomsuhapbia’s <strong>Geometry</strong></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#/" data-nav="home">Home</a><a href="#/topics" data-nav="topics">Geometry topics</a><a href="#/archive" data-nav="archive">PDF archive</a><a href="#/about" data-nav="about">About</a></nav>
+    <div class="header-actions"><button class="icon-button search-trigger" aria-label="Search articles and PDFs" title="Search (Ctrl or ⌘ K)"></button><span class="header-divider"></span><button class="icon-button theme-toggle" aria-label="Switch to dark theme"></button><button class="icon-button menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"></button></div>
+  </header>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#/">Home</a><a href="#/topics">Geometry topics</a><a href="#/archive">PDF archive</a><a href="#/about">About</a></nav>
+  <main id="main" tabindex="-1"></main>
+  <footer class="site-footer"><a class="footer-brand" href="#/">tomsuhapbia’s Geometry<span>Curated geometry, math proofs & academic notes.</span></a><div class="footer-right"><span>Made with curiosity. Shared for learning.</span><span>© 2026 tomsuhapbia <span class="footer-dot">·</span> <a href="#/about">About this journal ↗</a></span></div></footer>
+  <dialog id="search-dialog" class="search-dialog" aria-labelledby="search-title"><div class="search-top"><span id="search-icon"></span><h2 id="search-title" class="sr-only">Search the journal</h2><input id="global-search" type="search" placeholder="Find an idea, a theorem, a note…" autocomplete="off" aria-label="Search articles and PDFs" aria-controls="search-results"><button class="keycap" data-close="search-dialog" aria-label="Close search">Esc</button></div><div id="search-results" class="search-results"></div><div class="search-footer"><span>Search across articles & PDF notes</span><span>↑ ↓ navigate <span class="footer-dot">·</span> ↵ open</span></div></dialog>
+  <dialog id="pdf-dialog" class="pdf-dialog" aria-labelledby="pdf-title"><div class="pdf-heading"><div><span class="eyebrow">THE READING ROOM</span><h2 id="pdf-title"></h2></div><button class="icon-button" data-close="pdf-dialog" aria-label="Close PDF preview"></button></div><div class="pdf-toolbar"><div class="toolbar-group"><button class="icon-button" id="pdf-prev" aria-label="Previous page"></button><span id="pdf-pages" aria-live="polite"></span><button class="icon-button" id="pdf-next" aria-label="Next page"></button></div><div class="toolbar-group"><button class="icon-button" id="pdf-zoom-out" aria-label="Zoom out"></button><span id="pdf-zoom"></span><button class="icon-button" id="pdf-zoom-in" aria-label="Zoom in"></button><button class="icon-button" id="pdf-fullscreen" aria-label="Enter fullscreen"></button><a class="icon-button" id="pdf-download" download aria-label="Download PDF"></a></div></div><div id="pdf-stage" class="pdf-stage"><p class="pdf-status" role="status"></p><canvas id="pdf-canvas" aria-label="PDF page"></canvas></div><div class="pdf-bottom"><span>Prefer your own reader?</span><a id="pdf-native" target="_blank" rel="noopener">Open original PDF ↗</a></div></dialog>
+  <noscript><div class="noscript">This journal uses JavaScript to display its articles. You can still read the <a href="./pdf/triangle-centres.pdf">triangle centres PDF</a>.</div></noscript>
+</body>
+</html>
