@@ -43,6 +43,8 @@ Toàn bộ website hoàn chỉnh nằm trong **dist/**, gồm các font và thư
 - **Cloudflare Pages:** build `npm run build`, output `dist`.
 - **GitHub Pages / hosting tĩnh khác:** xuất bản nội dung dist. Đường dẫn tương đối hỗ trợ cả hosting dưới thư mục con.
 
+Repository có sẵn workflow `.github/workflows/pages.yml`. Sau khi push lên GitHub, vào **Settings → Pages → Build and deployment → Source**, chọn **GitHub Actions**. Mỗi lần push nhánh `main`, GitHub sẽ build và xuất bản thư mục `dist` tự động.
+
 Chỉ có một trang blog. Tài liệu mở trong hộp đọc PDF ngay trên trang hoặc tải về. Không cần cấu hình rewrite cho các trang con.
 
 ## Kiểm tra
