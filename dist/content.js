@@ -11,4 +11,17 @@ export const posts = [{
   pages: 7,
   bytes: 873738,
   language: 'English'
-}];
+},
+{
+  id: 'radicual-axis-and-darboux-cubic',
+  title: 'Radical Axis and Darboux Cubic',
+  author: 'tomsuhapbia',
+  date: '2026-08-22',
+  tags: ['Darboux cubic', 'Radical axis'],
+  description: '',
+  body: './posts/radical-axis-and-darboux-cubic.md',
+  pdf: '',
+}
+
+
+];
